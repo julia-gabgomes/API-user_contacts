@@ -9,6 +9,6 @@ import AppDataSource from "./data-source";
     });
 
   app.listen(3001, () => {
-    console.log("Server running on port localhost:3000");
+    console.log("Server running on port localhost:3001");
   });
 })();
