@@ -1,8 +1,14 @@
 import { z } from "zod";
-import { userRegisterSchema, userReturnSchema } from "../schemas/user.schemas";
+import {
+  userRequestSchema,
+  userResponseSchema,
+  userUpdateRequestSchema,
+} from "../schemas/user.schemas";
 
-type userRegister = z.infer<typeof userRegisterSchema>;
+type userRequest = z.infer<typeof userRequestSchema>;
 
-type userReturn = z.infer<typeof userReturnSchema>;
+type userResponse = z.infer<typeof userResponseSchema>;
 
-export { userRegister, userReturn };
+type userUpdateRequest = z.infer<typeof userUpdateRequestSchema>;
+
+export { userRequest, userResponse, userUpdateRequest };

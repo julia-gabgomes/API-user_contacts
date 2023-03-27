@@ -3,7 +3,7 @@ import AppError from "../errors/AppError";
 import { verify } from "jsonwebtoken";
 import "dotenv/config";
 
-const ensureAuthMiddleware = (
+const authenticateMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -29,4 +29,4 @@ const ensureAuthMiddleware = (
   next();
 };
 
-export default ensureAuthMiddleware;
+export default authenticateMiddleware;

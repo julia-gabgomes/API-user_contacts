@@ -1,43 +1,49 @@
 import { Router } from "express";
 
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
-import { userRegisterSchema } from "../schemas/user.schemas";
+import {
+  userRequestSchema,
+  userUpdateRequestSchema,
+} from "../schemas/user.schemas";
 
 import { createUserController } from "../controllers/users.controller";
 import ensureEmailAvailabilityMiddleware from "../middlewares/verifyEmailAvailability.middleware";
-import ensureAuthMiddleware from "../middlewares/authenticate.middleware";
+import authenticateMiddleware from "../middlewares/authenticate.middleware";
 import ensureIsAccountOwnerMiddleware from "../middlewares/ensureIsAccountOwner.middleware";
 import { listUserController } from "../controllers/users.controller";
+import ensureIdExistsMiddleware from "../middlewares/ensureIdExists.middleware";
+import { updateUserController } from "../controllers/users.controller";
+import { softDeleteUserController } from "../controllers/users.controller";
 
 const userRoutes = Router();
 
 userRoutes.post(
   "",
-  ensureDataIsValidMiddleware(userRegisterSchema),
+  ensureDataIsValidMiddleware(userRequestSchema),
   ensureEmailAvailabilityMiddleware,
   createUserController
 );
 userRoutes.get(
   "/:id",
-  ensureAuthMiddleware,
+  authenticateMiddleware,
+  ensureIdExistsMiddleware,
   ensureIsAccountOwnerMiddleware,
   listUserController
 );
 userRoutes.patch(
-  "/:id"
-  // verifyFieldToUpdateMiddleware,
-  // ensureDataIsValidMiddleware(updateRequestSchema),
-  // ensureAuthMiddleware,
-  // ensureIsValidIdMiddleware,
-  // verifyUserPermissionMiddleware,
-  // updateUserController
+  "/:id",
+  ensureDataIsValidMiddleware(userUpdateRequestSchema),
+  authenticateMiddleware,
+  ensureIdExistsMiddleware,
+  ensureIsAccountOwnerMiddleware,
+  updateUserController
 );
 userRoutes.delete(
-  "/:id"
-  // ensureAuthMiddleware,
-  // ensureIsAdmMiddleware,
-  // ensureIsValidIdMiddleware,
-  // softDeleteUserController
+  "/:id",
+  authenticateMiddleware,
+  ensureIdExistsMiddleware,
+  ensureIsAccountOwnerMiddleware,
+  softDeleteUserController
 );
 
 export default userRoutes;
