@@ -6,7 +6,9 @@ import {
   CreateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
+import { Contact } from "./contacts.entity";
 
 @Entity("users")
 class User {
@@ -36,6 +38,9 @@ class User {
   hashPassword() {
     this.password = hashSync(this.password, 10);
   }
+
+  @OneToMany(() => Contact, (contacts) => contacts.user)
+  contacts: Contact[];
 }
 
 export { User };
