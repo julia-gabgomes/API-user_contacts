@@ -1,16 +1,16 @@
-import { userReturn } from "../../interfaces/user.interfaces";
+import { userResponse } from "../../interfaces/user.interfaces";
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/users.entity";
-import { userReturnSchema } from "../../schemas/user.schemas";
+import { userResponseSchema } from "../../schemas/user.schemas";
 
-const retrieveUserService = async (id: string): Promise<userReturn> => {
+const retrieveUserService = async (id: string): Promise<userResponse> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const user = await userRepository.findOneBy({
     id: id,
   });
 
-  const validatedUser = userReturnSchema.parse(user);
+  const validatedUser = userResponseSchema.parse(user);
 
   return validatedUser;
 };

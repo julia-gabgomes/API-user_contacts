@@ -12,7 +12,7 @@ const ensureIsAccountOwnerMiddleware = (
   if (userId == id) {
     next();
   } else {
-    throw new AppError("Missing adm permission", 401);
+    throw new AppError("Must be account owner.", 401);
   }
 };
 
