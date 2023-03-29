@@ -1,19 +1,24 @@
 import { Router } from "express";
 
-import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import {
   userRequestSchema,
   userUpdateRequestSchema,
 } from "../schemas/user.schemas";
 
-import { createUserController } from "../controllers/users.controller";
-import ensureEmailAvailabilityMiddleware from "../middlewares/verifyEmailAvailability.middleware";
-import authenticateMiddleware from "../middlewares/authenticate.middleware";
-import ensureIsAccountOwnerMiddleware from "../middlewares/ensureIsAccountOwner.middleware";
-import { listUserController } from "../controllers/users.controller";
-import ensureIdExistsMiddleware from "../middlewares/ensureIdExists.middleware";
-import { updateUserController } from "../controllers/users.controller";
-import { softDeleteUserController } from "../controllers/users.controller";
+import {
+  createUserController,
+  listUserController,
+  updateUserController,
+  softDeleteUserController,
+} from "../controllers/users.controller";
+
+import {
+  ensureDataIsValidMiddleware,
+  ensureEmailAvailabilityMiddleware,
+  authenticateMiddleware,
+  ensureIsAccountOwnerMiddleware,
+  ensureIdExistsMiddleware,
+} from "../middlewares/index";
 
 const userRoutes = Router();
 
