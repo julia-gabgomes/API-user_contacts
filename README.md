@@ -26,6 +26,6 @@
 
 ### Agora a aplicação está pronta para ser testada!
 
-#### - Para isso, utilize a seguinte documentação para conhecer as rotas:
+#### - Para isso, utilize a seguinte documentação para conhecer as rotas: l1nq.com/kzI2x (link do Notion)
 
-#### - Baixe o arquivo x no Insomnia para realizar as requisições.
+#### - Baixe o arquivo "insomnia_entrega-fullstack.json" (localizado na raiz do projeto) para o Insomnia e realize as requisições.

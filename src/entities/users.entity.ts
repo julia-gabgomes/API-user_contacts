@@ -21,7 +21,7 @@ class User {
   @Column()
   phone_number: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

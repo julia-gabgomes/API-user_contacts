@@ -9,8 +9,6 @@ const createContactService = async (data: contact, userId) => {
 
   const savedUser = await contactRepository.save(createdUser);
 
-  console.log(savedUser);
-
   return savedUser;
 };
 
