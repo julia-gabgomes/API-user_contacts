@@ -6,7 +6,7 @@ import { compareSync } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import "dotenv/config";
 
-const createLoginService = async (loginData: login): Promise<string> => {
+const createLoginService = async (loginData: login) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const foundUser = await userRepository.findOneBy({ email: loginData.email });
@@ -25,7 +25,7 @@ const createLoginService = async (loginData: login): Promise<string> => {
     expiresIn: "24h",
   });
 
-  return token;
+  return { token: token, id: foundUser.id };
 };
 
 export default createLoginService;
