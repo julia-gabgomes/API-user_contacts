@@ -5,6 +5,7 @@ import AppError from "../../errors/AppError";
 import { compareSync } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import "dotenv/config";
+import { userResponseSchema } from "../../schemas/user.schemas";
 
 const createLoginService = async (loginData: login) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -25,7 +26,9 @@ const createLoginService = async (loginData: login) => {
     expiresIn: "24h",
   });
 
-  return { token: token, id: foundUser.id };
+  const validatedUser = userResponseSchema.parse(foundUser);
+
+  return { token: token, user: validatedUser };
 };
 
 export default createLoginService;
